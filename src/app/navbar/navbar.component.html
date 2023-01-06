@@ -1,0 +1,22 @@
+<section>
+  <button mat-flat-button routerLink="/home">
+    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="house"></mat-icon>
+    Home
+  </button>
+  <button mat-flat-button routerLink="/products">
+    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="checkbox"></mat-icon>
+    Products
+  </button>
+  <button mat-flat-button [ngClass]="{hide: true}" routerLink="/cart" >
+    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="favorites"></mat-icon>
+    CartInterface
+  </button>
+  <button mat-flat-button routerLink="/account">
+    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="account_circle"></mat-icon>
+    Account
+  </button>
+  <button mat-flat-button routerLink="/admin">
+    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="dashboard"></mat-icon>
+    Admin Panel
+  </button>
+</section>
