@@ -15,6 +15,13 @@ import {MatListModule} from "@angular/material/list";
 import {MatLineModule} from "@angular/material/core";
 import {MatButtonModule} from "@angular/material/button";
 import {MatGridListModule} from "@angular/material/grid-list";
+import { ProductAdminPanelComponent } from './product-admin-panel/product-admin-panel.component';
+import { ProductFormComponent } from './product-form/product-form.component';
+import {AdminPanelComponent} from "./admin-panel/admin-panel.component";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {ReactiveFormsModule} from "@angular/forms";
+import { HttpClientModule } from '@angular/common/http';
+import {MatDialog, MatDialogModule} from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
@@ -23,7 +30,10 @@ import {MatGridListModule} from "@angular/material/grid-list";
     ProductsComponent,
     CartComponent,
     HomeComponent,
-    ProductListComponent
+    ProductListComponent,
+    AdminPanelComponent,
+    ProductAdminPanelComponent,
+    ProductFormComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +44,11 @@ import {MatGridListModule} from "@angular/material/grid-list";
     MatListModule,
     MatLineModule,
     MatButtonModule,
-    MatGridListModule
+    MatGridListModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

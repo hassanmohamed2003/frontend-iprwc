@@ -1,0 +1,36 @@
+<article>
+  <section class="top-bar">
+    <header>
+      <h1>Product Admin Panel</h1>
+    </header>
+
+    <button mat-raised-button color="primary" (click)="openForm()">Create Product</button>
+  </section>
+
+  <section>
+    <mat-grid-list cols="3" rowHeight="3:1">
+      <section *ngFor = "let product of products">
+        <mat-grid-tile>
+          <section>
+            <mat-card class="product-card">
+              <mat-card-header>
+                <mat-card-title>{{ product.name }}</mat-card-title>
+              </mat-card-header>
+
+              <mat-card-content>
+                <mat-divider></mat-divider>
+              </mat-card-content>
+
+              <mat-card-actions>
+                <button mat-raised-button color="primary" (click)="addProductIdToFloor(product.id)">Select</button>
+                <button mat-raised-button color="accent" (click)="openForm(product)">Edit</button>
+                <button mat-raised-button color="warn" (click)="deleteProduct(product)">Delete</button>
+              </mat-card-actions>
+            </mat-card>
+          </section>
+        </mat-grid-tile>
+      </section>
+    </mat-grid-list>
+  </section>
+
+</article>

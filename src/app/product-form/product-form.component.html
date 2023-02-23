@@ -1,0 +1,27 @@
+<article>
+  <header>
+    <h2>{{ title }}</h2>
+  </header>
+
+  <section>
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+      <section>
+        <mat-form-field>
+          <label for="name">Product Name: </label>
+          <input matInput id="name" type="text" formControlName="name" required>
+        </mat-form-field>
+        <mat-form-field>
+          <label for="name">Product Price: </label>
+          <input matInput id="zipcode" type="text" formControlName="price" required>
+        </mat-form-field>
+      </section>
+
+      <section>
+        <p>Complete the form to enable button.</p>
+        <button mat-raised-button type="submit" color="primary" [disabled]="!productForm.valid">Save</button>
+        <button mat-raised-button type="button" color="warn" (click)="closeForm()">Cancel</button>
+      </section>
+    </form>
+  </section>
+</article>
+

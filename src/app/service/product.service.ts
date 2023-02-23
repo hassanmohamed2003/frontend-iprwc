@@ -23,8 +23,8 @@ export class ProductService {
   }
 
 
-  public getAllProducts(product: ProductInterface): Observable<ProductInterface> {
-    return this.http.post<ProductInterface>(PRODUCT_MAPPING, product, httpOptions);
+  public getAllProducts(): Observable<ProductInterface[]> {
+    return this.http.get<ProductInterface[]>(PRODUCT_MAPPING);
   }
 
 
