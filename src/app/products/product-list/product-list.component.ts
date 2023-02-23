@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Output} from '@angular/core';
-import { Product} from "../../models/product.interface";
+import {ProductInterface} from "../../models/product.interface";
 import {CartService} from "../../service/cart.service";
 
 @Component({
@@ -13,22 +13,22 @@ export class ProductListComponent {
   constructor(private cartService: CartService) {
   }
 
-  @Output() newProductEvent = new EventEmitter<Product>();
+  @Output() newProductEvent = new EventEmitter<ProductInterface>();
 
-  addtoCart(cartProduct: Product) {
+  addtoCart(cartProduct: ProductInterface) {
     this.shoppingcart.push(cartProduct)
   }
 
-  mockdataProduct : Product = {
+  mockdataProduct : ProductInterface = {
     id: "1",
     name: "inazuma eleven",
     price: "19.11"
   }
 
-  productList : Product[] = []
+  productList : ProductInterface[] = []
 
-  shoppingcart : Product[] = []
-  onAddToCart(product: Product): void {
+  shoppingcart : ProductInterface[] = []
+  onAddToCart(product: ProductInterface): void {
     this.cartService.addToCart({
       name: product.name,
       price: product.price,
