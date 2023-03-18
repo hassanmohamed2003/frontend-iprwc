@@ -18,15 +18,14 @@ body {
   background: #191c29;
 }
 .card {
-  width: 300px;
+  width: auto;
   height: auto;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  padding: 350px 36px 10px 10px;
   perspective: 2500px;
-  margin: 10px 50px;
+  margin: 0 50px;
 }
 
 .cover-image {
@@ -109,6 +108,22 @@ body {
   transform: translate3d(0%, -30%, 100px);
 }
 
-.button{
-  position: center;
+.my-flex-container {
+  height: 100px;
+  margin-bottom: 20px;;
+}
+
+.my-flex-container-column {
+  height: 200px;
+  margin-bottom: 20px;
+}
+
+.my-flex-item {
+  border: 1px;
+  height: 48px;
+}
+
+.my-flex-item-2 {
+  border: 1px;
+  height: 96px;
 }
