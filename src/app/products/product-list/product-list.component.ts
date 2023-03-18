@@ -22,7 +22,7 @@ export class ProductListComponent {
   mockdataProduct : ProductInterface = {
     id: "1",
     name: "inazuma eleven",
-    price: "19.11"
+    price: 19.11
   }
 
   productList : ProductInterface[] = []

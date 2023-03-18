@@ -15,7 +15,6 @@ import {MatListModule} from "@angular/material/list";
 import {MatLineModule} from "@angular/material/core";
 import {MatButtonModule} from "@angular/material/button";
 import {MatGridListModule} from "@angular/material/grid-list";
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -35,8 +34,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatListModule,
     MatLineModule,
     MatButtonModule,
-    MatGridListModule,
-    NgbModule
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,10 +1,7 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
-
-import {BASE_URL} from "../app.component";
 import {ProductInterface} from "../models/product.interface";
-import * as stream from "stream";
 
 const PRODUCT_MAPPING = '/product';
 

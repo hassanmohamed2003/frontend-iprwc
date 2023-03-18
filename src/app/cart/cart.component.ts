@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {CartService} from "../service/cart.service";
 import {Cart, CartItem} from "../models/cart.interface";
 import {Subscription} from "rxjs";
@@ -11,7 +11,7 @@ import {Subscription} from "rxjs";
 export class CartComponent {
   cartProducts: CartItem[] = []
 
-  cart: Cart = { items: [] };
+  cart: Cart = { items: [] , total: 0};
 
   cartSubscription: Subscription | undefined;
 
