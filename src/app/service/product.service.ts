@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
 import {ProductInterface} from "../models/product.interface";
 
 const PRODUCT_MAPPING = '/product';
@@ -20,8 +20,8 @@ export class ProductService {
   }
 
 
-  public getAllProducts(product: ProductInterface): Observable<ProductInterface> {
-    return this.http.post<ProductInterface>(PRODUCT_MAPPING, product, httpOptions);
+  public getAllProducts(): Observable<ProductInterface[]> {
+    return this.http.get<ProductInterface[]>(PRODUCT_MAPPING);
   }
 
 
@@ -36,5 +36,28 @@ export class ProductService {
   public updateProduct(product: ProductInterface): Observable<ProductInterface> {
     return this.http.put<ProductInterface>(PRODUCT_MAPPING, product, httpOptions);
   }
+
+
+  private buttonClicked = new BehaviorSubject<boolean>(false);
+
+  currentbuttonClicked$ = this.buttonClicked.asObservable();
+
+  sendButtonClicked(boolean:boolean): void{
+    this.buttonClicked.next(boolean)
+  }
+
+
+  private selectedProduct = new BehaviorSubject<ProductInterface>({
+    price: 0,
+    name: "",
+    id: ""
+  })
+
+  currentSelectedProduct$ = this.selectedProduct.asObservable();
+
+  sendSelectedProduct(building: ProductInterface): void{
+    this.selectedProduct.next(building)
+  }
+
 
 }

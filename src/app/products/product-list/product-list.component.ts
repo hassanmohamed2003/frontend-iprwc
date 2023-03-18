@@ -1,6 +1,9 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {ProductInterface} from "../../models/product.interface";
 import {CartService} from "../../service/cart.service";
+import {ProductService} from "../../service/product.service";
+import {BehaviorSubject} from "rxjs";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-product-list',
@@ -9,8 +12,10 @@ import {CartService} from "../../service/cart.service";
 })
 export class ProductListComponent {
 
+  public products: ProductInterface[] = [];
 
-  constructor(private cartService: CartService) {
+
+  constructor(private cartService: CartService, private productService: ProductService) {
   }
 
   @Output() newProductEvent = new EventEmitter<ProductInterface>();
@@ -22,8 +27,14 @@ export class ProductListComponent {
   mockdataProduct : ProductInterface = {
     id: "1",
     name: "inazuma eleven",
-    price: 19.11
+    price: 19.10
   }
+
+  public selectedProduct: ProductInterface = {
+    price: 0,
+    name: "",
+    id: ""
+  };
 
   productList : ProductInterface[] = []
 
@@ -36,5 +47,21 @@ export class ProductListComponent {
       id: product.id,
     });
 
+  }
+
+  public getProducts(): void{
+    this.productService.getAllProducts().subscribe(
+      (response: ProductInterface[]) => {
+        this.products = response;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
+
+  checkSelectedProduct(): void {
+    this.productService.currentSelectedProduct$
+      .subscribe(value => this.selectedProduct = value);
   }
 }

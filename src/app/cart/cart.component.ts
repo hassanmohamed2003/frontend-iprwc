@@ -11,7 +11,7 @@ import {Subscription} from "rxjs";
 export class CartComponent {
   cartProducts: CartItem[] = []
 
-  cart: Cart = { items: [] , total: 0};
+  cart: Cart = { items: [] , total_items: 0, total_price: 0};
 
   cartSubscription: Subscription | undefined;
 

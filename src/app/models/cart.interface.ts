@@ -1,7 +1,9 @@
 export interface Cart {
   items: Array<CartItem>;
 
-  total: number
+  total_items: number
+
+  total_price: number
 }
 
 export interface CartItem {
