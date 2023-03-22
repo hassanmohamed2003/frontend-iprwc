@@ -12,10 +12,16 @@ import {MatIconModule} from "@angular/material/icon";
 import { ProductListComponent } from './products/product-list/product-list.component';
 import {MatCardModule} from "@angular/material/card";
 import {MatListModule} from "@angular/material/list";
-import {MatLineModule} from "@angular/material/core";
+import {MatLineModule, MatOptionModule} from "@angular/material/core";
 import {MatButtonModule} from "@angular/material/button";
 import {MatGridListModule} from "@angular/material/grid-list";
 import {HttpClientModule} from "@angular/common/http";
+import { ProductListFlexComponent } from './products/product-list-flex/product-list-flex.component';
+import {MatMenuModule} from "@angular/material/menu";
+import { ProductsListComponent } from './products/products-list/products-list.component';
+import {MatSelectModule} from "@angular/material/select";
+import {ReactiveFormsModule} from "@angular/forms";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 @NgModule({
   declarations: [
@@ -24,7 +30,9 @@ import {HttpClientModule} from "@angular/common/http";
     ProductsComponent,
     CartComponent,
     HomeComponent,
-    ProductListComponent
+    ProductListComponent,
+    ProductListFlexComponent,
+    ProductsListComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +44,12 @@ import {HttpClientModule} from "@angular/common/http";
     MatLineModule,
     MatButtonModule,
     MatGridListModule,
-    HttpClientModule
+    HttpClientModule,
+    MatMenuModule,
+    MatOptionModule,
+    MatSelectModule,
+    ReactiveFormsModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

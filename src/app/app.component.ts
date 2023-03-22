@@ -9,4 +9,4 @@ export class AppComponent {
   title = 'frontend-iprwc';
 }
 
-export const BASE_URL = 'http://localhost:8080'
+export const BASE_URL = 'http://localhost:5000'

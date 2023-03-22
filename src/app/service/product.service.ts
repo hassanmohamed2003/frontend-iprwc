@@ -4,7 +4,7 @@ import {BehaviorSubject, Observable} from "rxjs";
 import {ProductInterface} from "../models/product.interface";
 import {BASE_URL} from "../app.component";
 
-const PRODUCT_MAPPING = '/api/product';
+const PRODUCT_MAPPING = '/api/v1/product';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -49,6 +49,12 @@ export class ProductService {
 
 
   private selectedProduct = new BehaviorSubject<ProductInterface>({
+    category: null as any,
+    description: "",
+    imageSrcCharacter: "",
+    imageSrcCover: "",
+    shortDescription: "",
+    stock: 0,
     price: 0,
     name: "",
     id: ""
