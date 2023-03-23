@@ -10,101 +10,71 @@
   </button>
 
 <mat-menu #menu="matMenu">
-    <mat-checkbox (click)="onEvent($event)" *ngFor="let Category of Categories" [value]="Category.name">{{Category.name}}</mat-checkbox>
+    <mat-checkbox (click)="onEvent($event)" *ngFor="let Category of Categories" [value]="Category.name" [(ngModel)]="Category.isChecked" (change)="updateState()" >{{Category.name}}</mat-checkbox>
 </mat-menu>
 
-<!--  <button mat-button [matMenuTriggerFor]="menu">Filter by category:</button>-->
-<!--  <mat-menu #menu="matMenu">-->
-<!--    <button mat-menu-item>Item 1</button>-->
-<!--    <button mat-menu-item>Item 2</button>-->
-<!--  </mat-menu>-->
-
-<!--  &lt;!&ndash; Dropdown menu &ndash;&gt;-->
-<!--  <mat-menu #menu="matMenu" id="dropdown" class="z-10 disabled-button w-56 p-3 bg-white rounded-lg shadow dark:bg-gray-700">-->
-<!--    <h6 (click)="onEvent($event)" class="mb-3 text-sm font-medium text-gray-900 dark:text-white">-->
-<!--      Category-->
-<!--    </h6>-->
-<!--      <button mat-menu-item>-->
-<!--       dddd-->
-<!--      </button>-->
-<!--      <mat-option (click)="onEvent($event)" *ngFor="let Category of Categories" [value]="Category">{{Category.name}}</mat-option>-->
-<!--      <li>-->
-<!--        <div class="flex items-center">-->
-<!--          <input (click)="onEvent($event)" id="checkbox-item-1" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">-->
-<!--          <label for="checkbox-item-1" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{Category.name}}</label>-->
-<!--        </div>-->
-<!--      </li>-->
-<!--      <li>-->
-<!--      <div class="flex items-center">-->
-<!--        <input (click)="onEvent($event)" id="checkbox-item-2" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">-->
-<!--        <label for="checkbox-item-1" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{Category.name}}</label>-->
-<!--      </div>-->
-<!--    </li>-->
-<!--      <li>-->
-<!--      <div class="flex items-center">-->
-<!--        <input (click)="onEvent($event)" id="checkbox-item-3" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">-->
-<!--        <label for="checkbox-item-1" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{Category.name}}</label>-->
-<!--      </div>-->
-<!--    </li>-->
-
-<!--  </mat-menu>-->
 </div>
+
 <div class="bg-white">
   <div class="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
     <h2 class="sr-only">Products</h2>
-
-    <div class="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-      <a class="group">
-        <div class="aspect-w-1 aspect-h-1 w-full rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
-          <a class="card aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-9">
+    <div class="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8" >
+      <ng-container *ngFor="let product of products" >
+      <a class="group" *ngIf="!product.category.isChecked" >
+        <div  class="aspect-w-1 aspect-h-1 w-full rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
+          <a class="card ">
               <div class="wrapper">
-                <img src="https://ggayane.github.io/css-experiments/cards/dark_rider-cover.jpg" class="cover-image" />
+                <img src="{{product.imageSrcCover}}" class="cover-image" />
               </div>
-            <img src="https://ggayane.github.io/css-experiments/cards/dark_rider-character.webp" class="character" />
-            <div class="container">
-              <svg class="filter-green" width="50px" height="50px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
-              </svg>
-            </div>
+            <img src="{{product.imageSrcCharacter}}" class="character" />
+<!--            <div class="container">-->
+<!--              <svg class="filter-green" width="50px" height="50px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">-->
+<!--                <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />-->
+<!--              </svg>-->
+<!--            </div>-->
           </a>
         </div>
-        <h3 class="mt-4 text-sm pt-12 text-gray-700">Earthen Bottle</h3>
-        <p class="mt-1 text-lg font-medium text-gray-900">$48</p>
+        <h3 class="mt-4 text-sm pt-12 text-gray-700">{{product.name}}</h3>
+        <h3 class="italic text-sm text-gray-700">{{product.shortDescription}}</h3>
+        <p class="text-lg font-medium text-gray-900">€ {{product.price}}</p>
+        <p class="text-lg font-medium text-gray-900">{{product.stock}} in stock</p>
+        <button mat-raised-button color="primary">Add to cart</button>
       </a>
+      </ng-container>
 
-      <a class="group">
-        <div class="aspect-w-1 aspect-h-1 w-full rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
-          <a class="card aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-9">
-            <div class="wrapper">
-              <img src="https://ggayane.github.io/css-experiments/cards/dark_rider-cover.jpg" class="cover-image" />
-            </div>
-            <img src="https://ggayane.github.io/css-experiments/cards/dark_rider-character.webp" class="character" />
-            <div class="container">
-              <svg class="filter-green" width="50px" height="50px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
-              </svg>
-            </div>
-          </a>
-        </div>
-        <h3 class="mt-4 text-sm pt-12 text-gray-700">Earthen Bottle</h3>
-        <p class="mt-1 text-lg font-medium text-gray-900">$48</p>
-      </a>
+<!--      <a class="group">-->
+<!--        <div class="aspect-w-1 aspect-h-1 w-full rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">-->
+<!--          <a class="card aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-9">-->
+<!--            <div class="wrapper">-->
+<!--              <img src="https://ggayane.github.io/css-experiments/cards/dark_rider-cover.jpg" class="cover-image" />-->
+<!--            </div>-->
+<!--            <img src="https://ggayane.github.io/css-experiments/cards/dark_rider-character.webp" class="character" />-->
+<!--            <div class="container">-->
+<!--              <svg class="filter-green" width="50px" height="50px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">-->
+<!--                <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />-->
+<!--              </svg>-->
+<!--            </div>-->
+<!--          </a>-->
+<!--        </div>-->
+<!--        <h3 class="mt-4 text-sm pt-12 text-gray-700">Earthen Bottle</h3>-->
+<!--        <p class="mt-1 text-lg font-medium text-gray-900">$48</p>-->
+<!--      </a>-->
 
-      <a href="#" class="group">
-        <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
-          <img src="https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-03.jpg" alt="Person using a pen to cross a task off a productivity paper card." class="h-full w-full object-cover object-center group-hover:opacity-75">
-        </div>
-        <h3 class="mt-4 text-sm text-gray-700">Focus Paper Refill</h3>
-        <p class="mt-1 text-lg font-medium text-gray-900">$89</p>
-      </a>
+<!--      <a href="#" class="group">-->
+<!--        <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">-->
+<!--          <img src="https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-03.jpg" alt="Person using a pen to cross a task off a productivity paper card." class="h-full w-full object-cover object-center group-hover:opacity-75">-->
+<!--        </div>-->
+<!--        <h3 class="mt-4 text-sm text-gray-700">Focus Paper Refill</h3>-->
+<!--        <p class="mt-1 text-lg font-medium text-gray-900">$89</p>-->
+<!--      </a>-->
 
-      <a href="#" class="group">
-        <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
-          <img src="https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-04.jpg" alt="Hand holding black machined steel mechanical pencil with brass tip and top." class="h-full w-full object-cover object-center group-hover:opacity-75">
-        </div>
-        <h3 class="mt-4 text-sm text-gray-700">Machined Mechanical Pencil</h3>
-        <p class="mt-1 text-lg font-medium text-gray-900">$35</p>
-      </a>
+<!--      <a href="#" class="group">-->
+<!--        <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">-->
+<!--          <img src="https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-04.jpg" alt="Hand holding black machined steel mechanical pencil with brass tip and top." class="h-full w-full object-cover object-center group-hover:opacity-75">-->
+<!--        </div>-->
+<!--        <h3 class="mt-4 text-sm text-gray-700">Machined Mechanical Pencil</h3>-->
+<!--        <p class="mt-1 text-lg font-medium text-gray-900">$35</p>-->
+<!--      </a>-->
 
       <!-- More products... -->
     </div>

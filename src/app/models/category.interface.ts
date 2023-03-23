@@ -3,6 +3,8 @@ export class Category{
   name: string;
   createDate: string;
 
+  isChecked?: boolean;
+
 
   constructor(id: string, name: string, createDate: string) {
     this.id = id;

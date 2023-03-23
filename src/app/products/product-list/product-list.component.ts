@@ -6,6 +6,7 @@ import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {FormControl} from "@angular/forms";
 import {Category} from "../../models/category.interface";
 import {BASE_URL} from "../../app.component";
+import {forEach} from "@angular-devkit/schematics";
 
 @Component({
   selector: 'app-product-list',
@@ -17,6 +18,11 @@ export class ProductListComponent implements OnInit{
   public products: ProductInterface[] = [];
 
   Categories : Category[] = [];
+
+  showProducts: boolean = false;
+
+  CheckedCategories : Category[] = [];
+
 
 
   constructor(private cartService: CartService, private productService: ProductService, private http: HttpClient) {
@@ -34,7 +40,13 @@ export class ProductListComponent implements OnInit{
   getCategories() {
     this.http.get<Category[]>(BASE_URL + '/api/v1/categories').subscribe((res) => {
       this.Categories = res;
-      console.log(res)
+      this.Categories.forEach(
+        Categories => {
+          // If selected and flag is true
+          Categories.isChecked = true;
+        }
+      )
+      // console.log(res)
     })
   }
 
@@ -55,9 +67,10 @@ export class ProductListComponent implements OnInit{
   public selectedCategory : Category = {
     createDate: "",
     id: "",
-    name: ""
-
+    name: "",
+    isChecked: true
   }
+
 
   productList : ProductInterface[] = []
 
@@ -77,8 +90,8 @@ export class ProductListComponent implements OnInit{
     this.productService.getAllProducts().subscribe(
       (response: ProductInterface[]) => {
         this.products = response;
-        console.log(response)
-        console.log("test")
+        // console.log(response)
+        // console.log("test")
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -100,6 +113,35 @@ export class ProductListComponent implements OnInit{
 
   onEvent(event: { stopPropagation: () => void; }) {
     event.stopPropagation();
+
   }
 
+  checkSelectedCategory(product: ProductInterface){
+    if(product.category.isChecked == true){
+      return true
+    }
+    else{
+      return false
+    }
+
+  }
+
+
+  updateState() {
+    // console.log(this.Categories)
+    this.CheckedCategories = [];
+    // Reset
+    this.showProducts = false;
+    // Itearte over plans
+    this.Categories.forEach(
+      Categories => {
+        // If selected and flag is true
+        if(Categories.isChecked){
+          // this.CheckedCategories.push(Categories)
+          // console.log(Categories)
+          this.showProducts = true;
+        }
+      }
+    )
+  }
 }

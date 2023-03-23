@@ -20,8 +20,10 @@ import { ProductListFlexComponent } from './products/product-list-flex/product-l
 import {MatMenuModule} from "@angular/material/menu";
 import { ProductsListComponent } from './products/products-list/products-list.component';
 import {MatSelectModule} from "@angular/material/select";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import { AccountComponent } from './account/account.component';
+import { FilterPipe } from './shared/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -32,25 +34,28 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     HomeComponent,
     ProductListComponent,
     ProductListFlexComponent,
-    ProductsListComponent
+    ProductsListComponent,
+    AccountComponent,
+    FilterPipe
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    MatIconModule,
-    MatCardModule,
-    MatListModule,
-    MatLineModule,
-    MatButtonModule,
-    MatGridListModule,
-    HttpClientModule,
-    MatMenuModule,
-    MatOptionModule,
-    MatSelectModule,
-    ReactiveFormsModule,
-    MatCheckboxModule
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        MatIconModule,
+        MatCardModule,
+        MatListModule,
+        MatLineModule,
+        MatButtonModule,
+        MatGridListModule,
+        HttpClientModule,
+        MatMenuModule,
+        MatOptionModule,
+        MatSelectModule,
+        ReactiveFormsModule,
+        MatCheckboxModule,
+        FormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
