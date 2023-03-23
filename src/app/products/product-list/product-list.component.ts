@@ -23,6 +23,8 @@ export class ProductListComponent implements OnInit{
 
   CheckedCategories : Category[] = [];
 
+  productsCategory : ProductInterface[] = [];
+
 
 
   constructor(private cartService: CartService, private productService: ProductService, private http: HttpClient) {
@@ -137,7 +139,7 @@ export class ProductListComponent implements OnInit{
       Categories => {
         // If selected and flag is true
         if(Categories.isChecked){
-          // this.CheckedCategories.push(Categories)
+          this.CheckedCategories.push(Categories)
           // console.log(Categories)
           this.showProducts = true;
         }
