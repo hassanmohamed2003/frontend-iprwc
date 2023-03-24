@@ -6,7 +6,6 @@ import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {FormControl} from "@angular/forms";
 import {Category} from "../../models/category.interface";
 import {BASE_URL} from "../../app.component";
-import {forEach} from "@angular-devkit/schematics";
 
 @Component({
   selector: 'app-product-list',
@@ -17,9 +16,11 @@ export class ProductListComponent implements OnInit{
 
   public products: ProductInterface[] = [];
 
+  quantity: number = 1;
+
+  public showProducts: ProductInterface[] = [];
   Categories : Category[] = [];
 
-  showProducts: boolean = false;
 
   CheckedCategories : Category[] = [];
 
@@ -77,12 +78,7 @@ export class ProductListComponent implements OnInit{
   shoppingcart : ProductInterface[] = []
 
   onAddToCart(product: ProductInterface): void {
-    this.cartService.addToCart({
-      name: product.name,
-      price: product.price,
-      quantity: 1,
-      id: product.id,
-    });
+    this.cartService.addToCart(product.id, this.quantity);
 
   }
 
@@ -90,6 +86,7 @@ export class ProductListComponent implements OnInit{
     this.productService.getAllProducts().subscribe(
       (response: ProductInterface[]) => {
         this.products = response;
+        this.showProducts = response;
         // console.log(response)
         // console.log("test")
       },
@@ -109,6 +106,7 @@ export class ProductListComponent implements OnInit{
   ngOnInit(): void {
     this.getProducts();
     this.getCategories();
+    // this.checkSelectedCategory()
   }
 
   onEvent(event: { stopPropagation: () => void; }) {
@@ -116,32 +114,35 @@ export class ProductListComponent implements OnInit{
 
   }
 
-  checkSelectedCategory(product: ProductInterface){
-    if(product.category.isChecked == true){
-      return true
+  checkSelectedCategory(category: Category[]) {
+    this.showProducts = []
+    for (let i = 0; i < category.length; i++) {
+      for (const product of this.products) {
+        if(category[i].name == product.category.name){
+          this.showProducts.push(product)
+          console.log(this.showProducts)
+        }
+      }
     }
-    else{
-      return false
-    }
-
   }
 
 
   updateState() {
     // console.log(this.Categories)
     this.CheckedCategories = [];
-    // Reset
-    this.showProducts = false;
     // Itearte over plans
     this.Categories.forEach(
       Categories => {
         // If selected and flag is true
         if(Categories.isChecked){
-          // this.CheckedCategories.push(Categories)
+          console.log(this.CheckedCategories)
+          this.CheckedCategories.push(Categories)
           // console.log(Categories)
-          this.showProducts = true;
+          this.checkSelectedCategory(this.CheckedCategories)
         }
       }
     )
   }
+
+
 }

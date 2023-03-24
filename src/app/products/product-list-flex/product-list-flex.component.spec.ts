@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ProductListFlexComponent } from './product-list-flex.component';
+import {ProductListFlexComponent} from './product-list-flex.component';
 
 describe('ProductListFlexComponent', () => {
   let component: ProductListFlexComponent;

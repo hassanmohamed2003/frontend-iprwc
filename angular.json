@@ -93,7 +93,9 @@
             "tsConfig": "tsconfig.spec.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/.well-known/pki-validation/CF6F185E1E12AD73B15C71AC67F37F80.txt",
+              { "glob": "CF6F185E1E12AD73B15C71AC67F37F80.txt", "input": "src/.well-known/pki-validation/", "output": "/" }
             ],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",

@@ -1,35 +1,51 @@
-import {Injectable} from '@angular/core';
-import {BehaviorSubject} from "rxjs";
-import {Cart, CartItem} from "../models/cart.interface";
-import {forEach} from "@angular-devkit/schematics";
+import {Injectable} from "@angular/core";
+import {ToastrService} from "ngx-toastr";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class CartService {
-  cart = new BehaviorSubject<Cart>({ items: [] , total_items: 0, total_price: 0});
 
-  constructor() { }
+  constructor(private toastr: ToastrService) {
+  }
+  private cart: any[] = [];
 
-  addToCart(item: CartItem): void {
-    const items = [...this.cart.value.items];
 
-    const itemInCart = items.find((_item) => _item.id === item.id);
-    if (itemInCart) {
-      itemInCart.quantity += 1;
-      let total_price : number = itemInCart.quantity*itemInCart.price;
-      let total_items : number = itemInCart.quantity
-      this.cart.next({ items , total_price, total_items});
-    } else {
-      items.push(item);
-      let total_price : number = item.price;
-      let total_items : number = item.quantity;
-      this.cart.next({ items, total_price, total_items});
+
+
+  initCart() {
+    if(!localStorage.getItem("cart")){
+      localStorage.setItem("cart", "[]");
     }
-
-
-
+    this.cart = JSON.parse(localStorage.getItem("cart") as any || []);
 
   }
 
+
+
+  addToCart(productID: String, quantity: number) {
+
+    let res = this.cart.find(element => element.productID === productID);
+    if(res === undefined) {
+      this.cart.push({productID, quantity});
+      this.toastr.success("Added product to your cart!", "Product added!")
+      localStorage.setItem("cart", JSON.stringify(this.cart));
+    } else {
+      res.quantity = quantity;
+      localStorage.setItem("cart", JSON.stringify(this.cart));
+      this.toastr.success("Adjusted the quantity!", "Quantity adjusted!")
+    }
+  }
+
+
+  removeFromCart(productID: String) {
+    let res = JSON.parse(localStorage.getItem("cart") as any || []);
+    let temp = res.filter((item: any) => item.productID != productID);
+    localStorage.setItem("cart", JSON.stringify(temp));
+    this.toastr.success("Succesfully removed the product", "Succesfully removed!");
+  }
+
+  getCart() {
+    return this.cart;
+  }
 }
