@@ -15,8 +15,8 @@ export class AdminService {
   constructor(private http: HttpClient) {
   }
 
-  editProduct(id: String, name: String, price: Number, stock: Number, category: Category, shortDescription: String, description: String, imageSrc: String) {
-    return this.http.patch<HttpResponse<any>>(BASE_URL + '/api/v1/products/' + id, {
+  editProduct(id: String, name: String, price: Number, stock: Number, category: Category, shortDescription: String, description: String, imageSrcCover: String, imageSrcCharacter: String) {
+    return this.http.patch<HttpResponse<any>>(BASE_URL + '/api/v1/product/' + id, {
       id,
       name,
       price,
@@ -24,7 +24,8 @@ export class AdminService {
       category,
       shortDescription,
       description,
-      imageSrc
+      imageSrcCover,
+      imageSrcCharacter
     })
   }
 
@@ -36,15 +37,16 @@ export class AdminService {
     return this.http.patch<HttpResponse<any>>(BASE_URL + '/api/v1/promocodes/' + id, {id, name, korting})
   }
 
-  createProduct(name: String, price: Number, stock: Number, category: Category, shortDescription: String, description: String, imageSrc: String) {
-    return this.http.post<ProductInterface>(BASE_URL + '/api/v1/products', {
+  createProduct(name: String, price: Number, stock: Number, category: Category, shortDescription: String, description: String, imageSrcCover: String, imageSrcCharacter: String) {
+    return this.http.post<ProductInterface>(BASE_URL + '/api/v1/product', {
       name,
       price,
       stock,
       category,
       shortDescription,
       description,
-      imageSrc
+      imageSrcCover,
+      imageSrcCharacter
     })
   }
 

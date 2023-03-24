@@ -41,7 +41,7 @@ export class ShoppingCartComponent implements OnInit {
 
 
   getProduct(productId: String, quantity:number) {
-    this.http.get<ProductInterface>(BASE_URL + '/api/v1/products/' + productId).subscribe((res) => {
+    this.http.get<ProductInterface>(BASE_URL + '/api/v1/product/' + productId).subscribe((res) => {
       res.quantity = quantity;
       res.totalPrice = res.price * quantity;
       this.totalProducts += res.quantity;

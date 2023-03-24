@@ -11,11 +11,11 @@ import {EditCategoriesComponent} from "./category/edit-categories/edit-categorie
 import {AddProductComponent} from "./products/add-product/add-product.component";
 import {AddCategoriesComponent} from "./category/add-categories/add-categories.component";
 import {EditProductComponent} from "./products/edit-product/edit-product.component";
-import {AdminDashboardComponent} from "./admin/admin-dashboard/admin-dashboard.component";
 import {EditSingleProductComponent} from "./products/edit-single-product/edit-single-product.component";
 import {EditUsersComponent} from "./edit-users/edit-users.component";
 import {ShopComponent} from "./shop/shop.component";
 import {ShoppingCartComponent} from "./shopping-cart/shopping-cart.component";
+import {AdminDashboardComponent} from "./admin-dashboard/admin-dashboard.component";
 
 const routes: Routes = [
   // { path: 'products', component: ProductListComponent },
@@ -23,7 +23,7 @@ const routes: Routes = [
   // { path: 'home', component: HomeComponent},
   // { path: 'auth/login', component: LoginComponent},
   // { path: 'auth/signup', component: SignupComponent},
-  { path: '', component: HomeComponent},
+  { path: 'home', component: HomeComponent},
   { path: 'auth/login', component: LoginComponent},
   { path: 'auth/signup', component: SignupComponent},
   { path: 'shop', component: ShopComponent},

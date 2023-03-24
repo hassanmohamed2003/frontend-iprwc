@@ -28,7 +28,7 @@ import {AdminComponent} from './admin/admin.component';
 import {ManagerComponent} from './manager/manager.component';
 import {LoginComponent} from './login/login.component';
 import {SignupComponent} from './signup/signup.component';
-import {AdminDashboardComponent} from './admin/admin-dashboard/admin-dashboard.component';
+import {AdminDashboardComponent} from "./admin-dashboard/admin-dashboard.component";
 import {AddProductComponent} from './products/add-product/add-product.component';
 import {EditProductComponent} from './products/edit-product/edit-product.component';
 import {EditSingleProductComponent} from './products/edit-single-product/edit-single-product.component';
@@ -41,6 +41,8 @@ import {ShoppingCartComponent} from "./shopping-cart/shopping-cart.component";
 import {NavigationComponent} from "./navigation/navigation.component";
 import {ToastrModule} from "ngx-toastr";
 import {AuthInterceptorService} from "./auth-interceptor.service";
+import {MatTableModule} from "@angular/material/table";
+
 
 @NgModule({
   declarations: [
@@ -58,7 +60,6 @@ import {AuthInterceptorService} from "./auth-interceptor.service";
     ManagerComponent,
     LoginComponent,
     SignupComponent,
-    AdminDashboardComponent,
     AddProductComponent,
     EditProductComponent,
     EditSingleProductComponent,
@@ -68,28 +69,30 @@ import {AuthInterceptorService} from "./auth-interceptor.service";
     EditUsersComponent,
     ShopComponent,
     ShoppingCartComponent,
-    NavigationComponent
+    NavigationComponent,
+    AdminDashboardComponent
   ],
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        AppRoutingModule,
-        MatIconModule,
-        MatCardModule,
-        MatListModule,
-        MatLineModule,
-        MatButtonModule,
-        MatGridListModule,
-        HttpClientModule,
-        MatMenuModule,
-        MatOptionModule,
-        MatSelectModule,
-        ReactiveFormsModule,
-        MatCheckboxModule,
-        FormsModule,
-      HttpClientModule,
-      ToastrModule.forRoot()
-    ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    MatIconModule,
+    MatCardModule,
+    MatListModule,
+    MatLineModule,
+    MatButtonModule,
+    MatGridListModule,
+    HttpClientModule,
+    MatMenuModule,
+    MatOptionModule,
+    MatSelectModule,
+    ReactiveFormsModule,
+    MatCheckboxModule,
+    FormsModule,
+    HttpClientModule,
+    ToastrModule.forRoot(),
+    MatTableModule
+  ],
   providers: [{
     provide : HTTP_INTERCEPTORS,
     useClass : AuthInterceptorService,

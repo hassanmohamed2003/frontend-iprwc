@@ -106,6 +106,7 @@ export class ProductListComponent implements OnInit{
   ngOnInit(): void {
     this.getProducts();
     this.getCategories();
+    this.cartService.initCart();
     // this.checkSelectedCategory()
   }
 
