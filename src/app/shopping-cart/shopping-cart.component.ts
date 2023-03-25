@@ -50,8 +50,6 @@ export class ShoppingCartComponent implements OnInit {
     this.totalCost = 0;
     this.totalProducts = 0;
 
-    console.log(this.cart)
-
     for (let i = 0; i < this.cart.length; i++) {
       this.getProduct(this.cart[i].productID, this.cart[i].quantity);
     }
@@ -88,6 +86,7 @@ export class ShoppingCartComponent implements OnInit {
       else{
         alert("Product is out of stock")
         // this.loadCart();
+
       }
 
     })

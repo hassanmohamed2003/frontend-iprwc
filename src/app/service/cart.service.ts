@@ -25,11 +25,9 @@ export class CartService {
 
 
   addToCart(productID: String, quantity: number) {
-    console.log(this.cart)
 
 
     let res = this.cart.find(element => element.productID === productID);
-    console.log(res)
     if(res === undefined) {
       this.cart.push({productID, quantity});
       this.toastr.success("Added product to your cart!", "Product added!")
@@ -43,10 +41,10 @@ export class CartService {
   }
 
   subtractfromCart(productID: String, quantity: number) {
-    console.log(this.cart)
+    // console.log(this.cart)
 
     let res = this.cart.find(element => element.productID === productID);
-    console.log(res)
+    // console.log(res)
     res.quantity = quantity
     localStorage.setItem("cart", JSON.stringify(this.cart));
     this.toastr.success("Adjusted the quantity!", "Quantity adjusted!")

@@ -128,7 +128,7 @@ export class ProductListComponent implements OnInit{
       for (const product of this.products) {
         if(category[i].name == product.category.name){
           this.showProducts.push(product)
-          console.log(this.showProducts)
+          // console.log(this.showProducts)
         }
       }
     }
@@ -143,7 +143,7 @@ export class ProductListComponent implements OnInit{
       Categories => {
         // If selected and flag is true
         if(Categories.isChecked){
-          console.log(this.CheckedCategories)
+          // console.log(this.CheckedCategories)
           this.CheckedCategories.push(Categories)
           // console.log(Categories)
           this.checkSelectedCategory(this.CheckedCategories)

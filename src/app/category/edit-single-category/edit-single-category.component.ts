@@ -55,7 +55,7 @@ export class EditSingleCategoryComponent implements OnInit{
     const val = this.form.value;
     if (this.form.valid) {
       this.loading = true
-      console.log(val);
+      // console.log(val);
       this.adminService.editCategory(this.category.id, val.name).subscribe({
         next: () => {
           this.loading = false;

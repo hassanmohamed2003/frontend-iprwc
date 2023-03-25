@@ -81,7 +81,7 @@ export class EditSingleProductComponent implements OnInit{
     const val = this.form.value;
     if (this.form.valid) {
       this.loading = true
-      console.log(val);
+      // console.log(val);
       this.adminService.editProduct(this.product.id, val.name, val.price, val.stock, val.category, val.shortDescription, val.description, val.imageSrcCover, val.imageSrcCharacter).subscribe({
         next: () => {
           this.loading = false;
