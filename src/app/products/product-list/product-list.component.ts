@@ -78,7 +78,14 @@ export class ProductListComponent implements OnInit{
   shoppingcart : ProductInterface[] = []
 
   onAddToCart(product: ProductInterface): void {
-    this.cartService.addToCart(product.id, this.quantity);
+    if(product.stock > 0){
+      this.cartService.addToCart(product.id, this.quantity);
+      product.stock = product.stock - 1
+    }
+    else(
+      alert("Sorry, product is out of stock. Check in later!")
+
+    )
 
   }
 

@@ -5,6 +5,7 @@ import {AuthService} from "../auth.service";
 import {BASE_URL} from "../app.component";
 import {CartService} from "../service/cart.service";
 import {ProductService} from "../service/product.service";
+import {BehaviorSubject} from "rxjs";
 
 @Component({
   selector: 'app-shopping-cart',
@@ -17,8 +18,21 @@ export class ShoppingCartComponent implements OnInit {
   constructor(private http: HttpClient, private authService: AuthService, private cartService: CartService, private productService: ProductService) {
   }
 
+  private selectedProduct = new BehaviorSubject<ProductInterface>({
+    category: null as any,
+    description: "",
+    imageSrcCharacter: "",
+    imageSrcCover: "",
+    shortDescription: "",
+    stock: 0,
+    price: 0,
+    name: "",
+    id: ""
+  })
+
 
   products: ProductInterface[] = [];
+
   totalCost: number = 0;
   totalProducts: number = 0;
   cart: any[] = [];
@@ -61,7 +75,7 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   subtractQuantity(productQuantity: any, productID: String) {
-    this.cartService.addToCart(productID, productQuantity -= 1);
+    this.cartService.subtractfromCart(productID, productQuantity -= 1);
     this.loadCart();
   }
 

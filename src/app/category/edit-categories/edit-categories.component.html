@@ -10,7 +10,7 @@
         </a>
       </div>
       <div *ngFor="let category of categories" class="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5">
-        <mat-card>
+        <mat-card class="w-100">
           <div class="flex w-2/5"> <!-- category -->
             <div class="w-20 flex items-center justify-center">
               <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-8 text-grey-500 h-8" viewBox="0 0 24 24">
@@ -18,7 +18,7 @@
               </svg>
             </div>
             <div class="flex flex-col justify-between ml-4 flex-grow">
-              <span class="font-bold text-sm">{{category.name}}</span>
+              <span class="font-bold text-sm">naam: {{category.name}}</span>
               <span class="text-black-500 text-xs">Categorie-id: {{category.id}}</span>
               <a (click)="removeCategory(category.id)"  class="font-semibold cursor-pointer hover:text-red-500 text-gray-500 text-xs">Verwijder</a>
             </div>
@@ -27,7 +27,7 @@
             <button routerLink="/admin/edit/category/{{category.id}}" class="bg-green-400 text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Wijzig</button>
 
           </div>
-          <span class="text-center w-1/5 font-semibold text-sm">{{category.createDate}}</span>
+          <span class="text-center w-1/5 font-semibold text-sm">gemaakt: {{category.createDate}}</span>
           <span class="text-center w-1/5 font-semibold text-sm">{{category.name}}</span>
         </mat-card>
       </div>
