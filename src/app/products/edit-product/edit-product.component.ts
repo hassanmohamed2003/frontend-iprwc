@@ -5,6 +5,8 @@ import {AuthService} from "../../auth.service";
 import {ProductInterface} from "../../models/product.interface";
 import {BASE_URL} from "../../app.component";
 import {Router} from "@angular/router";
+import {Cart} from "../../models/cart.interface";
+import {CartService} from "../../service/cart.service";
 
 @Component({
   selector: 'app-edit-product',
@@ -14,7 +16,7 @@ import {Router} from "@angular/router";
 export class EditProductComponent implements OnInit{
 
 
-  constructor(private http: HttpClient, private toastr: ToastrService, private authService: AuthService, private router: Router) { }
+  constructor(private http: HttpClient, private toastr: ToastrService, private authService: AuthService, private router: Router, private cartService: CartService) { }
   products: ProductInterface[]=[];
   ngOnInit() {
     if(!this.authService.isAdmin()) {
@@ -35,6 +37,7 @@ export class EditProductComponent implements OnInit{
     this.http.delete<ProductInterface>(BASE_URL + '/api/v1/product/' + productID).subscribe(() => {
       this.ngOnInit();
       this.toastr.error('Succesvol verwijderd!', 'Product verwijderd!');
+      this.cartService.removeFromCart(productID);
     })
   }
 

@@ -30,6 +30,8 @@ export class ShoppingCartComponent implements OnInit {
     id: ""
   })
 
+  res :any;
+
 
   products: ProductInterface[] = [];
 
@@ -47,6 +49,8 @@ export class ShoppingCartComponent implements OnInit {
     this.products = [];
     this.totalCost = 0;
     this.totalProducts = 0;
+
+    console.log(this.cart)
 
     for (let i = 0; i < this.cart.length; i++) {
       this.getProduct(this.cart[i].productID, this.cart[i].quantity);
@@ -70,13 +74,35 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   addQuantity(productQuantity: any, productID: String) {
-    this.cartService.addToCart(productID, productQuantity += 1);
+    this.http.get<ProductInterface>(BASE_URL + '/api/v1/product/' + productID).subscribe((res) => {
+      // res.quantity = quantity;
+      // res.totalPrice = res.price * quantity;
+      // this.totalProducts += res.quantity;
+      // this.totalCost += res.totalPrice;
+      // this.products.push(res);
+      // this.res = res
+      if(res.stock > productQuantity){
+        this.cartService.addToCart(productID, productQuantity += 1);
+        // this.loadCart();
+      }
+      else{
+        alert("Product is out of stock")
+        // this.loadCart();
+      }
+
+    })
     this.loadCart();
+
   }
 
   subtractQuantity(productQuantity: any, productID: String) {
-    this.cartService.subtractfromCart(productID, productQuantity -= 1);
-    this.loadCart();
+    if (productQuantity > 0) {
+      this.cartService.subtractfromCart(productID, productQuantity -= 1);
+      this.loadCart()
+    }
+    else{
+      alert("¯\\_(ツ)_/¯")
+    }
   }
 
 }
