@@ -1,4 +1,5 @@
-# FrontendIprwc
+# Frontend Iprwc
+Dit is een project voor het vak IPRWC van Hassan Mohamed.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.4.
 
